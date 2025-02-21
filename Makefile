@@ -12,11 +12,13 @@ endif
 ifeq ($(USE_COPT),)
 	USE_COPT = -std=gnu99
 endif
+USE_COPT += -fdump-tree-optimized-graph -fstack-usage
 
 # C++ specific options here (added to USE_OPT).
 ifeq ($(USE_CPPOPT),)
 	USE_CPPOPT = -fno-rtti -std=c++11
 endif
+USE_CPPOPT += -fdump-tree-optimized-graph -fstack-usage -fdump-lang-class
 
 # Enable this if you want the linker to remove unused code and data.
 ifeq ($(USE_LINK_GC),)
@@ -29,9 +31,9 @@ ifeq ($(USE_LDOPT),)
 endif
 
 # Enable this if you want link time optimizations (LTO).
-ifeq ($(USE_LTO),)
-	USE_LTO = yes
-endif
+# ifeq ($(USE_LTO),)
+# 	USE_LTO = yes
+# endif
 
 # Enable this if you want to see the full log while compiling.
 ifeq ($(USE_VERBOSE_COMPILE),)
